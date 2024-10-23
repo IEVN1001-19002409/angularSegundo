@@ -1,0 +1,97 @@
+<div class="grid grid-cols-2">
+    <div class="p-6 ml-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 text-black">
+        
+        <form class="max-w-sm mx-auto" [formGroup]="formulario">
+            <div class="mb-5">
+                <label for="nombre"
+                    class="block mb-2 text-sm font-medium text-black light:text-black">Nombre:</label>
+                <input type="text" id="nombre"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                    required formControlName="nombre" />
+            </div>
+            <div class="mb-5">
+                <label for="a_paterno" class="block mb-2 text-sm font-medium text-black light:text-black">Apellido
+                    Paterno:</label>
+                <input type="text" id="a_paterno"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                    required formControlName="a_paterno" />
+            </div>
+            <div class="mb-5">
+                <label for="a_materno" class="block mb-2 text-sm font-medium text-black light:text-black">Apellido
+                    Materno:</label>
+                <input type="text" id="a_materno"
+                    class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                    required formControlName="a_materno" />
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="col">
+                    <label for="dia" class="block mb-2 text-sm font-medium text-black light:text-black">Día:</label>
+                    <input type="number" id="dia"
+                        class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                        required formControlName="dia" />
+                </div>
+                <div class="col">
+                    <label for="mes" class="block mb-2 text-sm font-medium text-black light:text-black">Mes:</label>
+                    <input type="number" id="mes"
+                        class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                        required formControlName="mes" />
+                </div>
+                <div class="col">
+                    <label for="anio" class="block mb-2 text-sm font-medium text-black light:text-black">Año:</label>
+                    <input type="number" id="anio"
+                        class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500"
+                        required formControlName="anio" />
+                </div>
+            </div>
+            <div class="grid grid-rows-4 grid-flow-col gap-4">
+                <label class="form-label d-block text-black">Sexo</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino"
+                        formControlName="sexo">
+                    <label class="form-check-label text-black" for="masculino">Masculino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino"
+                        formControlName="sexo">
+                    <label class="form-check-label text-black" for="femenino">Femenino</label>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full mr-0 sm:w-auto px-5 py-2.5 text-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800"
+                (click)="validaAnio()">Imprimir</button>
+        </form>
+    </div>
+    <div *ngIf="resultado">
+
+        <a href="#"
+            class="block max-w-sm m-20 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-black">Hola {{resultado.nombre}}
+            </h5>
+            <p class="font-normal text-black">Tu edad es {{resultado.anio}}
+            </p>
+            <div>
+
+                <p class="font-normal text-black">Tu signo zodiacal es : {{resultado.animal}}</p>
+            </div>
+
+            <div class="w-50 h-50">
+                <img [src]="resultado.img" class="W-100">
+            </div>
+        </a>
+
+    </div>
+    <div *ngIf="resultado2">
+
+        <a href="#"
+            class="block max-w-sm m-20 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-black">{{resultado2}}
+            </h5>
+            
+        </a>
+
+    </div>
+    
+</div>

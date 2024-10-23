@@ -1,0 +1,86 @@
+<div class="max-w-6xl mx-auto p-8 bg-gray-100 rounded-lg shadow-md">
+    <!-- Título principal -->
+    <h1 class="text-2xl font-bold mb-6 text-center">Registro de Empleados</h1>
+  
+    <!-- Contenedor principal con dos columnas -->
+    <div class="grid grid-cols-2 gap-8">
+      <!-- Columna izquierda (campos de formulario y botón Registrar) -->
+      <div>
+        <label for="matricula" class="block text-gray-700 mb-2">Matrícula</label>
+        <input [(ngModel)]="matricula" id="matricula" type="text" class="w-full px-4 py-2 mb-4 border rounded" placeholder="Matrícula" />
+  
+        <label for="nombre" class="block text-gray-700 mb-2">Nombre</label>
+        <input [(ngModel)]="nombre" id="nombre" type="text" class="w-full px-4 py-2 mb-4 border rounded" placeholder="Nombre" />
+  
+        <label for="correo" class="block text-gray-700 mb-2">Correo</label>
+        <input [(ngModel)]="correo" id="correo" type="email" class="w-full px-4 py-2 mb-4 border rounded" placeholder="Correo" />
+  
+        <label for="edad" class="block text-gray-700 mb-2">Edad</label>
+        <input [(ngModel)]="edad" id="edad" type="number" class="w-full px-4 py-2 mb-4 border rounded" placeholder="Edad" />
+  
+        <label for="horasTrabajadas" class="block text-gray-700 mb-2">Horas Trabajadas</label>
+        <input [(ngModel)]="horasTrabajadas" id="horasTrabajadas" type="number" class="w-full px-4 py-2 mb-4 border rounded" placeholder="Horas Trabajadas" />
+  
+        <!-- Botón Registrar -->
+        <button (click)="registrarEmpleado()" class="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+          {{ editMode ? 'Modificar Empleado' : 'Registrar Empleado' }}
+        </button>
+      </div>
+  
+      <!-- Columna derecha (botón Imprimir Tabla) -->
+      <div class="flex flex-col">
+        <!-- Botón Imprimir Tabla -->
+        <button (click)="imprimirTabla()" class="py-2 px-6 bg-green-500 text-white rounded hover:bg-green-700 mb-6 self-end">
+          Imprimir Tabla
+        </button>
+  
+        <!-- Tabla de empleados -->
+        <div *ngIf="mostrarTabla" class="w-full overflow-x-auto">
+          <table class="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <thead class="bg-gray-200 text-gray-600">
+              <tr>
+                <th class="py-2 px-4 text-center">Matrícula</th>
+                <th class="py-2 px-4 text-center">Nombre</th>
+                <th class="py-2 px-4 text-center">Correo</th>
+                <th class="py-2 px-4 text-center">Edad</th>
+                <th class="py-2 px-4 text-center">Horas Trabajadas</th>
+                <th class="py-2 px-4 text-center">Horas Extras</th>
+                <th class="py-2 px-4 text-center">Pago Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of empleados" class="text-center">
+                <td class="py-2 px-4 border">{{ emp.matricula }}</td>
+                <td class="py-2 px-4 border">{{ emp.nombre }}</td>
+                <td class="py-2 px-4 border">{{ emp.correo }}</td>
+                <td class="py-2 px-4 border">{{ emp.edad }}</td>
+                <td class="py-2 px-4 border">{{ emp.horasTrabajadas }}</td>
+                <td class="py-2 px-4 border">{{ emp.horasExtras }}</td>
+                <td class="py-2 px-4 border">{{ emp.pagoTotal }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6" class="py-2 px-4 text-right font-bold">Total a Pagar:</td>
+                <td class="py-2 px-4 font-bold">{{ calcularTotalPagar() }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Botones debajo de la tabla, alineados a la derecha -->
+    <div *ngIf="mostrarTabla" class="mt-6 flex justify-end space-x-4">
+      <!-- Botón Modificar -->
+      <button (click)="modificarEmpleado()" class="py-2 px-6 bg-yellow-500 text-white rounded hover:bg-yellow-700">
+        Modificar Empleado
+      </button>
+  
+      <!-- Botón Eliminar -->
+      <button (click)="eliminarEmpleado()" class="py-2 px-6 bg-red-500 text-white rounded hover:bg-red-700">
+        Eliminar Empleado
+      </button>
+    </div>
+  </div>
+  
